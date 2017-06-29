@@ -1,0 +1,127 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+             BackgroundImage="bg.png"
+             Title="LoadMore Workshop"
+             xmlns:controls="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin.Abstractions"
+             xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MyLoadMore.FeedJSONPage">
+    <ContentPage.Content>
+        <ListView
+            BackgroundColor="Transparent"
+		    ItemTapped="listView_ItemTapped"
+		    x:Name="listView"
+            RefreshCommand="{Binding LoadTweetsCommand}"
+		    IsRefreshing="{Binding IsBusy, Mode=OneWay}"
+		    IsPullToRefreshEnabled="true"
+		    RowHeight="290"
+		    SeparatorVisibility="None">
+            <ListView.Header>
+                <Image
+				HeightRequest="90"
+				Source="header.png"
+				Margin="10,5,0,5" />
+            </ListView.Header>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <Frame
+                            BackgroundColor="#FAFBFB"
+						    HasShadow="false"
+						    Margin="20,8,20,8"
+						    Padding="8,8,8,8">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition
+									Width="50" />
+                                    <ColumnDefinition />
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition
+									Height="Auto" />
+                                    <RowDefinition
+									Height="Auto" />
+                                    <RowDefinition
+									Height="Auto" />
+                                </Grid.RowDefinitions>
+
+                                <controls:CircleImage
+								    HeightRequest="50"
+								    Source="{Binding avatar_image}" />
+                                <StackLayout
+								    Orientation="Vertical"
+								    Grid.Column="1">
+                                    <Label
+									    Text="{Binding title}"
+									    LineBreakMode="TailTruncation"
+									    Font="Bold,14"
+									    Margin="10,0,0,0" />
+                                    <Label
+									    Text="{Binding subtitle}"
+									    LineBreakMode="TailTruncation"
+									    Font="14"
+									    Margin="10,0,0,0" />
+                                </StackLayout>
+                                <Image
+                                    Grid.ColumnSpan="2"
+                                    Grid.Row="1"
+                                    Aspect="AspectFill"
+                                    HeightRequest="160"
+                                    Source="{Binding youtube_image}"/>
+
+                                <StackLayout
+                                    Grid.Row="3"
+                                    Grid.Column="0"
+                                    Grid.ColumnSpan="2"
+                                    Orientation="Horizontal"
+                                    HeightRequest="50"
+                                    HorizontalOptions="Fill">
+                                    <Label
+                                        Text="LIKE"
+                                        TextColor="#AA0000FF"
+                                        VerticalOptions="Fill"
+                                        HorizontalOptions="CenterAndExpand">
+                                        <Label.GestureRecognizers>
+                                            <TapGestureRecognizer
+                                                Tapped="Handle_Tapped_LIKE"/>
+                                        </Label.GestureRecognizers>
+                                    </Label>
+                                    <Label
+                                        Text="COMMENT"
+                                        TextColor="#AA0000FF"
+                                        VerticalOptions="Fill"
+                                        HorizontalOptions="CenterAndExpand">
+                                        <Label.GestureRecognizers>
+                                            <TapGestureRecognizer
+                                                Tapped="Handle_Tapped_COMMENT"/>
+                                        </Label.GestureRecognizers>
+
+                                    </Label>
+
+                                </StackLayout>
+                            </Grid>
+                        </Frame>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+            <ListView.Footer>
+                <StackLayout
+				x:Name="ListViewFooter"
+				Orientation="Horizontal"
+				HorizontalOptions="Center"
+				VerticalOptions="Center"
+				HeightRequest="90">
+                    <Label
+					Text="Loading more..  "
+					VerticalOptions="CenterAndExpand" />
+                    <ActivityIndicator
+					x:Name="LoadingIndicator"
+					IsRunning="true"
+					WidthRequest="30"
+					HeightRequest="30"
+					VerticalOptions="CenterAndExpand" />
+                </StackLayout>
+            </ListView.Footer>
+        </ListView>
+    </ContentPage.Content>
+</ContentPage>

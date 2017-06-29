@@ -13,7 +13,8 @@ namespace MyLoadMore
         {
             InitializeComponent();
 
-            MainPage = new MyLoadMore.MainPage();
+            //MainPage = new MyLoadMore.MainPage();
+            MainPage = new NavigationPage(new SuccessPage());
         }
 
         protected override void OnStart()
