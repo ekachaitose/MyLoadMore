@@ -2,4 +2,45 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MyLoadMore.PTTWebServicePage">
+    <ContentPage.Content>
+        <ListView
+            x:Name="listView"
+            VerticalOptions="Fill"
+            HorizontalOptions="Fill"
+            SeparatorVisibility="None"
+            RowHeight="70"
+            Margin="40,0,40,0">
+            <ListView.Header>
+                <Image
+                    Source="header_main.png"
+                    Margin="0,16,0,0"/>
+            </ListView.Header>
+
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <StackLayout
+                            Orientation="Horizontal"
+                            BackgroundColor="Black"
+                            Margin="0,16,0,0">
+                            <Image
+								HeightRequest="60"
+								VerticalOptions="Start"
+								Aspect="AspectFill"
+								Source="{Binding Image}"
+								WidthRequest="130" />
+                            <Label
+								FontSize="35"
+								VerticalOptions="CenterAndExpand"
+								TextColor="Lime"
+								Text="{Binding Price}"
+								HorizontalOptions="CenterAndExpand" />
+
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+            
+        </ListView>
+    </ContentPage.Content>
 </ContentPage>
