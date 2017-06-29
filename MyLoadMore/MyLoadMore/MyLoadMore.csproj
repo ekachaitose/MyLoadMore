@@ -56,6 +56,7 @@
       <DependentUpon>PTTWebServicePage.xaml</DependentUpon>
     </Compile>
     <Compile Include="SuccessPage.cs" />
+    <Compile Include="XLabel.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="MainPage.xaml">
